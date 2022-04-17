@@ -1,0 +1,91 @@
+#:kivy 1.11.1
+
+
+WindowManager:
+
+    HomeWindow:
+    ActionWindow:
+    DonationWindow:
+
+
+<ActionWindow>:
+    name: 'action'
+
+    GridLayout:
+        cols: 2
+
+
+        GridLayout:
+            cols: 1
+
+            Label:
+                text: 'URL'
+            TextInput:
+                id: url
+                multiline: False
+            Button:
+                text: 'Parse'
+                on_release: 
+
+        GridLayout:
+            cols: 1
+
+            Button:
+                text: 'Home'
+                on_release: 
+                    app.root.current = 'home'
+                    root.manager.transition.direction = 'left'
+        
+
+
+
+<HomeWindow>:
+    name: 'home'
+
+    GridLayout:
+        cols: 2
+
+        Button:
+            text: 'Actions'
+            on_release: 
+                app.root.current = 'action'
+                root.manager.transition.direction = 'right'
+
+
+        Button:
+            text: 'Donations'
+            on_release: 
+                app.root.current = 'donation'
+                root.manager.transition.direction = 'left'
+
+
+<DonationWindow>:
+    name: 'donation'
+
+    GridLayout:
+        cols: 2
+
+        GridLayout:
+            cols: 1
+            
+            Button:
+                text: 'Home'
+                on_release: 
+                    app.root.current = 'home'
+                    root.manager.transition.direction = 'right'
+
+        GridLayout:
+            cols: 1
+
+            Label:
+                text: 'Amount (KZT)'
+            TextInput:
+                id: money
+                multiline: False
+            Button:
+                text: 'Send Money'
+                on_release: 
+                    money.text = 'Thanks'
+
+        
+        

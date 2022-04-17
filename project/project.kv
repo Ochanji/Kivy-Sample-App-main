@@ -1,0 +1,101 @@
+<ParseURL>:
+    name: 'parse'
+
+    url: url
+
+    FloatLayout:
+        cols: 1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: 'URL: '
+                size_hint: 0.5,0.12
+                pos_hint: {'x': 0, 'top': 0.8}
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                id: url
+                multiline: False
+                size_hint: 0.65, 0.06
+                pos_hint: {'x': 0.3, 'top': 0.77}
+                font_size: (root.width**2 + root.height**2) / 16**4
+
+        Button:
+            pos_hint: {'x': 0.2, 'y':0.25}
+            size_hint: 0.6, 0.15
+            text: 'Get word count'
+            font_size: (root.width**2 + root.height**2) / 13**4
+            on_release:
+                root.parse()
+
+        Button:
+            pos_hint:{'x': 0.2, 'y': 0.05}
+            size_hint: 0.6, 0.2
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: 'Go Home'
+            on_release:
+                app.root.current = 'home'       
+                root.manager.transition.direction = 'down'
+
+
+<DonationsWindow>:
+    name: 'donations'
+
+    amount: amount
+
+    FloatLayout:
+
+        Label:
+            text:'Amount (KZT): '
+            size_hint: 0.35, 0.15
+            pos_hint: {'x':0.1, 'top':0.9}
+            font_size: (root.width**2 + root.height**2) / 13**4
+
+        TextInput:
+            id: amount
+            multiline: False
+            size_hint: 0.4, 0.15
+            pos_hint: {'x': 0.45, 'top':0.9}
+            font_size: (root.width**2 + root.height**2) / 13**4
+
+        Button:
+            text: 'Send'
+            size_hint: 0.6, 0.2
+            pos_hint:{'x': 0.2, 'y': 0.25}
+            font_size: (root.width**2 + root.height**2) / 13**4
+            on_release:
+                root.donateBtn()
+
+        Button:
+            pos_hint:{'x': 0.2, 'y': 0.05}
+            size_hint: 0.6, 0.2
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: 'Go Home'
+            on_release:
+                app.root.current = 'home'       
+                root.manager.transition.direction = 'up'
+
+<MainWindow>:
+    name: 'home'
+
+    FloatLayout:
+        Button:
+            text: 'Parse URL'
+            size_hint: 0.6, 0.2
+            pos_hint: {'x': 0.2, 'y': 0.25}
+            font_size: (root.width**2 + root.height**2) / 13**4
+            on_release:
+                app.root.current = 'parse'
+                root.manager.transition.direction = 'up'
+
+        
+        Button:
+            text: 'Donate'
+            size_hint: 0.6 ,0.2
+            pos_hint: {'x':0.2, 'y': 0.6}
+            font_size: (root.width**2 + root.height**2) / 13**4
+            on_release:
+                app.root.current = 'donations'
+                root.manager.transition.direction = 'down'

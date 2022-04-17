@@ -1,0 +1,23 @@
+#:kivy 1.11.1
+
+<Button>:
+    font_size: 20
+    # width height
+    size_hint: 0.2, 0.1
+    color: 0.3, 0.6, 0.7, 1
+    background_color: 0.3, 0.4, 0.5, 1
+
+
+<FloatLayout>:
+    
+
+    Button:
+        # pos_hint: {'x', 'y', 'top', 'bottom', 'left', 'right'}
+        pos_hint: {'x': 0.4, 'y': 0.1}
+        text: 'Add'
+    
+    Button:
+        id: btn
+        pos_hint: {'x': 0.4, 'y': 0}
+        text: 'Multiply' if btn.state == 'normal' else 'inactive'
+        
